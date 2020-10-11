@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web</title>
+</head>
+<body>
+    <p>
+        Введите массив:
+    </p>
+    <span>
+        <input type="number" id="text">
+        <button onclick="input()">Ввод</button>
+        <button onclick="result()">Результат</button>
+    </span>
+    <pre id="result" style="font-size: 16px">
+    </pre>
+</body>
+<script>
+    let mas = [];
+    let elem = document.querySelector('#text');
+    function input()
+    {
+        if (elem.value != '')
+        {
+            mas.push(+elem.value);
+            elem.value = '';
+        }
+    }
+    function result()
+    {
+        let par = document.querySelector('#result');
+        par.textContent = "Массив: " + mas;
+        let copy = mas;
+        sort(copy);
+        par.textContent += "\nОтсортированный массив: " + copy;
+        par.textContent += "\nМаксимальный эелемент: " + copy[copy.length - 1];
+        par.textContent += "\nМинимальный элемент: " + copy[0];
+        par.textContent += "\nСумма: " + sum(copy);
+    }
+    function sum (arr)
+    {
+        let s  = 0;
+        for (let i = 0; i < arr.length - 1; i++)
+        {
+            s += arr[i];
+        }
+        return s;
+    }
+    function sort(arr)
+    {
+        for (let i = 0; i < arr.length - 1; i++)
+        {
+            for (let j = 0; j < arr.length - 1 - i; j++)
+            {
+                if(arr[j + 1] < arr[j])
+                {
+                    let temp = arr[j + 1];
+                    arr[j + 1] = arr[j];
+                    arr[j] = temp;
+                }
+            }
+        }
+    }
+</script>
+</html>
