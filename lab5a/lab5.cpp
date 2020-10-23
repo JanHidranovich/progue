@@ -12,5 +12,8 @@ int main()
 	plane->showType();
 	plane->setType("Passenger");
 	plane->showType();
+	delete plane;
+	delete car;
+	delete train;
 	return 0;
 }
