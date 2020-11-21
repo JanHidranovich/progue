@@ -19,6 +19,7 @@ public:
 	int countCost(int);
 	double countTime(int);
 	friend ostream& operator<<(ostream&, const Passenger&);
+	friend istream& operator>>(istream&, Passenger&);
 };
 
 class Plane : public Passenger
