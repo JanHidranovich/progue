@@ -8,10 +8,8 @@ int main()
 	Plane* plane = new Plane("cargo");
 	Car* car = new Car;
 	Train* train = new Train;
-	plane->showPass();
-	plane->showType();
+	cout << plane;
 	plane->setType("Passenger");
-	plane->showType();
 	delete plane;
 	delete car;
 	delete train;
