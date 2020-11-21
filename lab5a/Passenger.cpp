@@ -14,6 +14,14 @@ void Passenger::setSpeed(int sp)
 {
 	speed = sp;
 }
+int Passenger::getSpeed()
+{
+	return speed;
+}
+int Passenger::getCost()
+{
+	return cost;
+}
 int Passenger::countCost(int distance)
 {
 	return cost * distance;
@@ -44,6 +52,10 @@ Plane::Plane(string t)
 	capacity = 120;
 	type = t;
 }
+string Plane::getType()
+{
+	return type;
+}
 bool Plane::checkCap(int cap)
 {
 	if (capacity >= cap)
@@ -62,6 +74,13 @@ void Plane::setType(string t)
 void Plane::showType()
 {
 	cout << type << endl;
+}
+ostream& operator<<(ostream& mystream, const Passenger& p)
+{
+	mystream << "Speed: " << p.speed << endl;
+	mystream << "Cost: " << p.cost << endl;
+	mystream << "Capacity: " << p.capacity << endl;
+	return mystream;
 }
 
 Car::Car()
