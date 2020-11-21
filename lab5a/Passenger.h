@@ -12,10 +12,13 @@ protected:
 public:
 	Passenger();
 	void showPass();
+	int getSpeed();
+	int getCost();
 	int getCapacity();
 	void setSpeed(int);
 	int countCost(int);
 	double countTime(int);
+	friend ostream& operator<<(ostream&, const Passenger&);
 };
 
 class Plane : public Passenger
@@ -27,6 +30,7 @@ public:
 	Plane(string);
 	bool checkCap(int);
 	void setType(string);
+	string getType();
 	void showType();
 };
 
