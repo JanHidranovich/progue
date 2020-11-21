@@ -82,6 +82,16 @@ ostream& operator<<(ostream& mystream, const Passenger& p)
 	mystream << "Capacity: " << p.capacity << endl;
 	return mystream;
 }
+istream& operator>> (istream& in, Passenger& p) {
+
+	cout << "Enter speed: ";
+	in >> p.speed;
+	cout << "Enter cost: ";
+	in >> p.cost;
+	cout << "Enter capacity: ";
+	in >> p.capacity;
+	return in;
+}
 
 Car::Car()
 {
