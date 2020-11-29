@@ -1,0 +1,89 @@
+<html>
+<body id="body">
+	<script type="text/javascript">
+		let Arr = [] 
+		Arr[0] = 
+		{
+			name: "Sergey",
+			surname: "Harlanov",
+			age: 18,
+			mark: 9.6,
+		}
+		Arr[1] =
+		{
+			name: "Vlad",
+			surname: "Mironchuk",
+			age: 19,
+			mark: 9.4,
+		}
+		Arr[2] =
+		{
+			name: "Vlad",
+			surname: "Kochurko",
+			age: 18,
+			mark: 9.6,
+		}
+		Arr[3] =
+		{
+			name: "Yan",
+			surname: "Hidronovich",
+			age: 18,
+			mark: 9.2,
+		}
+		let body = document.getElementById("body");
+		let table = document.createElement("table");
+		let data = document.createElement("tr");
+		let name = document.createElement("td");
+		let surname = document.createElement("td");
+		let age = document.createElement("td");
+		let mark = document.createElement("td");
+
+		name.appendChild(document.createTextNode("Name"));
+		surname.appendChild(document.createTextNode("Surname"));
+		age.appendChild(document.createTextNode("Age"));
+		mark.appendChild(document.createTextNode("Mark"));
+
+		data.appendChild(name);
+		data.appendChild(surname);
+		data.appendChild(age);
+		data.appendChild(mark);
+
+		table.appendChild(data);
+		body.appendChild(table);
+
+		for (let i = 0; i < Arr.length; i++)
+		{
+			let tr = document.createElement("tr");
+			tr.setAttribute("id", i);
+			let tname = document.createElement("td");
+			let tsurname = document.createElement("td");
+			let tage = document.createElement("td");
+			let tmark = document.createElement("td");
+
+			tname.appendChild(document.createTextNode(Arr[i]["name"]));
+			tsurname.appendChild(document.createTextNode(Arr[i]["surname"]));
+			tage.appendChild(document.createTextNode(Arr[i]["age"]));
+			tmark.appendChild(document.createTextNode(Arr[i]["mark"]));
+					
+			tr.appendChild(tname);
+			tr.appendChild(tsurname);
+			tr.appendChild(tage);
+			tr.appendChild(tmark);
+
+			table.appendChild(tr);
+		}
+
+		let count = table.lastChild.id;
+		let sum = 0;
+		for(let i = 0; i < +count + 1; i++)
+		{
+			sum += +document.getElementById(i).lastChild.innerHTML; 
+		}
+		console.log(+count + 1);
+		console.log(sum);
+		let p = document.createElement("p");
+		body.appendChild(p);
+		p.innerHTML = "Average: " + (sum / (+count + 1)).toFixed(2);
+	</script>
+</body>
+</html>
