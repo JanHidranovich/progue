@@ -1,0 +1,164 @@
+<html>
+<head>
+	<style>
+	table
+	{
+    	width: 27%;
+	}
+	</style>
+</head>
+<body id="body">
+	<script type="text/javascript">
+		let Arr = [] 
+		Arr[0] = 
+		{
+			name: "Sergey",
+			surname: "Harlanov",
+			age: 18,
+			mark: 9.6,
+		}
+		Arr[1] =
+		{
+			name: "Vlad",
+			surname: "Mironchuk",
+			age: 19,
+			mark: 9.4,
+		}
+		Arr[2] =
+		{
+			name: "Vlad",
+			surname: "Kochurko",
+			age: 18,
+			mark: 9.6,
+		}
+		Arr[3] =
+		{
+			name: "Yan",
+			surname: "Hidronovich",
+			age: 18,
+			mark: 9.2,
+		}
+		function deletestudent(a)
+		{
+			Arr.splice(a, 1);
+			table.innerHTML = "";
+			createTable();
+			average();
+		}
+		let body = document.getElementById("body");
+		let table = document.createElement("table");
+		let hat = document.createElement("table");
+		let data = document.createElement("tr");
+		let name = document.createElement("td");
+		let surname = document.createElement("td");
+		let age = document.createElement("td");
+		let mark = document.createElement("td");
+		let p = document.createElement("p");
+		name.appendChild(document.createTextNode("Name"));
+		surname.appendChild(document.createTextNode("Surname"));
+		age.appendChild(document.createTextNode("Age"));
+		mark.appendChild(document.createTextNode("Mark"));
+
+		data.appendChild(name);
+		data.appendChild(surname);
+		data.appendChild(age);
+		data.appendChild(mark);
+
+		hat.appendChild(data);
+		body.appendChild(hat);
+		body.appendChild(table);
+		body.appendChild(p);
+		
+		function createTable()
+		{
+			for (let i = 0; i < Arr.length; i++)
+			{
+				let tr = document.createElement("tr");
+				tr.setAttribute("id", i);
+				let tname = document.createElement("td");
+				let tsurname = document.createElement("td");
+				let tage = document.createElement("td");
+				let tmark = document.createElement("td");
+
+				tname.appendChild(document.createTextNode(Arr[i]["name"]));
+				tsurname.appendChild(document.createTextNode(Arr[i]["surname"]));
+				tage.appendChild(document.createTextNode(Arr[i]["age"]));
+				tmark.appendChild(document.createTextNode(Arr[i]["mark"]));
+
+				let buttondelete = document.createElement("button");
+						
+				tr.appendChild(tname);
+				tr.appendChild(tsurname);
+				tr.appendChild(tage);
+				tr.appendChild(tmark);
+				tr.appendChild(buttondelete);
+				buttondelete.appendChild(document.createTextNode("Delete"));
+
+				table.appendChild(tr);
+				buttondelete.setAttribute("onclick", "deletestudent(" + i + ")");
+			}
+		}
+		function average()
+		{
+			let count = table.lastChild.id;
+			let sum = 0;
+			for(let i = 0; i < +count + 1; i++)
+			{
+				sum += +document.getElementById(i).childNodes[3].innerHTML; 
+			}
+			p.innerHTML = "Average: " + (sum / (+count + 1)).toFixed(2);
+		}
+		function addstudent()
+		{
+			let student = 
+			{
+				"name": document.querySelector('#nameinput').value,
+				"surname": document.querySelector('#surnameinput').value,
+				"age": +document.querySelector('#ageinput').value,
+				"mark": +document.querySelector('#markinput').value,
+			};
+			Arr.push(student);
+
+			let tr = document.createElement("tr");
+			tr.setAttribute("id", Arr.length - 1);
+			let tname = document.createElement("td");
+			let tsurname = document.createElement("td");
+			let tage = document.createElement("td");
+			let tmark = document.createElement("td");
+
+			tname.appendChild(document.createTextNode(Arr[Arr.length - 1]["name"]));
+			tsurname.appendChild(document.createTextNode(Arr[Arr.length - 1]["surname"]));
+			tage.appendChild(document.createTextNode(Arr[Arr.length - 1]["age"]));
+			tmark.appendChild(document.createTextNode(Arr[Arr.length - 1]["mark"]));
+					
+			let buttondelete = document.createElement("button");
+
+			tr.appendChild(tname);
+			tr.appendChild(tsurname);
+			tr.appendChild(tage);
+			tr.appendChild(tmark);
+			tr.appendChild(buttondelete);
+			buttondelete.appendChild(document.createTextNode("Delete"));
+			buttondelete.setAttribute("onclick", "deletestudent(" + (Arr.length - 1) + ")");
+
+			table.appendChild(tr);
+
+			let count = table.lastChild.id;
+			let sum = 0;
+			for(let i = 0; i < +count + 1; i++)
+			{
+				sum += +document.getElementById(i).childNodes[3].innerHTML; 
+			}
+			p.innerHTML = "Average: " + (sum / (+count + 1)).toFixed(2);
+		}
+		createTable();
+		average();
+		
+	</script>
+	<input type="text" id="nameinput" style="width: 5%" value="Name"/>
+	<input type="text" id="surnameinput" style="width: 8%" value="Surname"/>
+	<input type="number" id="ageinput" style="width: 6%" value="18"/>
+	<input type="number" id="markinput" style="width: 6%" value="8.4"/>
+	<button style="width: 4%" onclick="addstudent()">Add</button>
+</body>
+</html>
