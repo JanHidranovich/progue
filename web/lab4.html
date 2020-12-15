@@ -1,0 +1,162 @@
+<html>
+<head>
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<style>
+		table
+		{
+			width: 35%;
+		}
+		table tr td
+		{
+			width: 25%;
+		}
+		#hat
+		{
+			width: 30%;
+		}
+	</style>
+</head>
+<body id="body">
+<script type="text/javascript">
+	let Arr = [];
+
+	Arr[0] =
+			{
+				name: "Sergey",
+				surname: "Harlanov",
+				age: 18,
+				mark: 9.6,
+			}
+	Arr[1] =
+			{
+				name: "Vlad",
+				surname: "Mironchuk",
+				age: 19,
+				mark: 9.4,
+			}
+	Arr[2] =
+			{
+				name: "Vlad",
+				surname: "Kochurko",
+				age: 18,
+				mark: 9.6,
+			}
+	Arr[3] =
+			{
+				name: "Yan",
+				surname: "Hidronovich",
+				age: 18,
+				mark: 9.2,
+			};
+	function hat()
+	{
+		let hat = $("<table></table>").attr("id", "hat");
+		let name = $("<td></td>").text("Name");
+		let surname = $("<td></td>").text("Surname");
+		let age = $("<td></td>").text("Age");
+		let mark = $("<td></td>").text("Mark");
+		let data = $("<tr></tr>");
+
+		$(data).append(name, surname, age, mark);
+		$(hat).append(data);
+		$(body).append(hat);
+	}
+	function average()
+	{
+		let p = $("<p></p>").text("Average: " + c_average());
+		$(body).append(p);
+	}
+	function table()
+	{
+		let table = $("<table></table>");
+
+		for (let i = 0; i < Arr.length; i++)
+		{
+			let temp = $("<tr></tr>");
+			let tName = $("<td></td>").text(Arr[i]["name"]);
+			let tSurname = $("<td></td>").text(Arr[i]["surname"]);
+			let tAge = $("<td></td>").text(Arr[i]["age"]);
+			let tMark = $("<td></td>").text(Arr[i]["mark"]);
+			let deleteButton = $("<button></button>").text("Delete").attr("id", i).attr("onclick", "deletestudent(" + i + ")");
+			$(temp).append(tName, tSurname, tAge, tMark, deleteButton);
+			$(table).append(temp);
+		}
+
+		$(body).append(table);
+
+	}
+	function c_average()
+	{
+		let sum = 0;
+		for (let i = 0; i < Arr.length; i++)
+		{
+			sum += Arr[i]["mark"];
+		}
+		return sum / Arr.length;
+	}
+	function input()
+	{
+		let inputname = $("<input></input>").attr("id", "nameinput").attr("type", "text").attr("style", "width:6%").attr("value", "Name");
+		let inputsurname = $("<input></input>").attr("id", "surnameinput").attr("type", "text").attr("style", "width:8%").attr("value", "Surame");
+		let inputage = $("<input></input>").attr("id", "ageinput").attr("type", "number").attr("style", "width:5%").attr("value", "19");
+		let inputmark = $("<input></input>").attr("id", "markinput").attr("type", "number").attr("style", "width:5%").attr("value", "9");
+		let inputbutton = $("<button>Add</button>").attr("onclick", "addstudent()").attr("style", "width:4%");
+
+		let div = $("<div></div>");
+		$(div).append(inputname, inputsurname, inputage, inputmark, inputbutton);
+		$(body).append(div);
+	}
+	function addstudent()
+	{
+		let student =
+				{
+					"name": $("#nameinput").attr("value"),
+					"surname": $("#surnameinput").attr("value"),
+					"age": +$("#ageinput").attr("value"),
+					"mark": +$("#markinput").attr("value"),
+				};
+		Arr.push(student);
+		$(body).empty();
+		hat();
+		table();
+		average();
+		input();
+	}
+	function deletestudent(a)
+	{
+		Arr.splice(a, 1);
+		$(body).empty();
+		hat();
+		table();
+		average();
+		input();
+	}
+	hat();
+	table();
+	average();
+	input();
+
+
+	/*$.ajax({
+		url: "student.json",
+		dataType: "json",
+		method: "GET",
+		data: {},
+		success: function(data)
+		{
+			for (let i = 0; i < data.length; i++)
+			{
+				Arr[i]["name"] = data[i]["name"];
+				Arr[i]["surname"] = data[i]["surname"];
+				Arr[i]["age"] = data[i]["age"];
+				Arr[i]["mark"] = data[i]["mark"];
+			}
+		}
+	});*/
+
+
+
+</script>
+
+</body>
+</html>
