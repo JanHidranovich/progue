@@ -97,7 +97,7 @@
 	function input()
 	{
 		let inputname = $("<input></input>").attr("id", "nameinput").attr("type", "text").attr("style", "width:6%").attr("value", "Name");
-		let inputsurname = $("<input></input>").attr("id", "surnameinput").attr("type", "text").attr("style", "width:8%").attr("value", "Surame");
+		let inputsurname = $("<input></input>").attr("id", "surnameinput").attr("type", "text").attr("style", "width:8%").attr("value", "Surname");
 		let inputage = $("<input></input>").attr("id", "ageinput").attr("type", "number").attr("style", "width:5%").attr("value", "19");
 		let inputmark = $("<input></input>").attr("id", "markinput").attr("type", "number").attr("style", "width:5%").attr("value", "9");
 		let inputbutton = $("<button>Add</button>").attr("onclick", "addstudent()").attr("style", "width:4%");
@@ -110,10 +110,10 @@
 	{
 		let student =
 				{
-					"name": $("#nameinput").attr("value"),
-					"surname": $("#surnameinput").attr("value"),
-					"age": +$("#ageinput").attr("value"),
-					"mark": +$("#markinput").attr("value"),
+					"name": $("#nameinput").val(),
+					"surname": $("#surnameinput").val(),
+					"age": +$("#ageinput").val(),
+					"mark": +$("#markinput").val(),
 				};
 		Arr.push(student);
 		$(body).empty();
